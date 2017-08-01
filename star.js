@@ -1,6 +1,7 @@
 function Star(x) {
     this.x = x;
-    this.y = height -150;
+    this.y = height - 150;
+    this.r;
     
     this.update = function() {
         fill(255, 255, 255, 60);

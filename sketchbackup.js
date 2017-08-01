@@ -1,12 +1,16 @@
+/*
+-SPLICE OBAVEZAN!
+*/
 var ships = [];
 var stars = [];
 var timer = 0;
 var wave;
+var x = 0;
 var canvas;
 
 function setup() {
     canvas = createCanvas(window.innerWidth, window.innerHeight - 3.501);
-    for (var i = 0; i < 10; i++) {
+    for (var i = 0; i < 10000; i++) {
         ships[i] = new Ship();
     }
     for (var j = 0; j < 10; j++) {
@@ -28,16 +32,14 @@ function draw() {
         stars[j].display();
     }
     timer += 1;
-    for (var i = 0; i < ships.length; i++) {
+    for (var i = 0; i < 10 + x; i++) {
         if (timer > 100) {
             timer = 0;
-            for (var knez = 0; knez < 10; knez++) {
-                ships.push(new Ship());
-            }
+            x += 10;
         }
         ships[i].display();
         ships[i].update();
-        if (ships[i].timer > 800) {
+        if (ships[i].timer > 100) {
             ships.splice(0, 10);
             ships[i].timer = 0;
         }

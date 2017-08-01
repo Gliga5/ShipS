@@ -1,8 +1,9 @@
 function Ship() {
     this.x = random(0, width);
     this.y = 0;
+    this.r;
     this.s = random(0, 15);
-    this.speed = random(0, 5);
+    this.speed = random(0, 3);
     this.timer = 0;
     
     this.display = function() {
@@ -17,5 +18,6 @@ function Ship() {
     }
     this.update = function() {
         this.y += 1 + this.speed;
+        this.timer += 1;
     }
 }
