@@ -5,6 +5,7 @@ function Ship() {
     this.s = random(0, 15);
     this.speed = random(0, 3);
     this.timer = 0;
+    this.a = 1;
     
     this.intersects = function(other) {
         var d = dist(this.x, this.y, other.x, other.y);
@@ -28,6 +29,6 @@ function Ship() {
     }
     this.update = function() {
         this.y += 1 + this.speed;
-        this.timer += 1;
+        this.timer += this.a;
     }
 }
