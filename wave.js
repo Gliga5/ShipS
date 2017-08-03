@@ -7,12 +7,11 @@ function Wave() {
     this.display = function() {
         textSize(24)
         fill(255);
-        stroke(255);
         text("Wave: " + this.number, this.x, this.y)
     }
     this.update = function() {
         this.timer += 1;
-        if (this.timer == 900) {
+        if (this.timer == 1900) {
             this.timer = 0;
             this.number += 1;
         }
