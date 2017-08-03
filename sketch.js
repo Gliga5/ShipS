@@ -54,7 +54,7 @@ function draw() {
     
     
     
-    stars.push(new Star(mouseX))
+    stars.push(new Star(mouseX, mouseY))
     for (var i = 0; i < stars.length; i++) {
         stars[i].display();
     }
