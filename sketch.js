@@ -40,14 +40,15 @@ function draw() {
         }
         ships[i].display();
         ships[i].update();
-        if (ships[i].intersects(stars[indexstar])) {
-            textSize(200);
-            fill(255, 0, 0);
-            text("GAME OVER", 100, height/2);
-        } 
         if (ships[i].timer > 1400) {
             ships.splice(0, 10);
             ships[i].timer = 0;
+        }
+        if (ships[i].intersects(stars[indexstar])) {
+            textSize(100);
+            fill(255, 0, 0);
+            text("GAME OVER", width/2 - 325, height/2 + 10);
+            ships[i].upd();
         }
     } 
     
