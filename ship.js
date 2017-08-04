@@ -1,6 +1,6 @@
 function Ship() {
     this.x = random(0, width);
-    this.y = 0;
+    this.y = -500;
     this.r = 46;
     this.s = random(0, 15);
     this.speed = random(0, 3);
