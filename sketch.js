@@ -1,9 +1,12 @@
 var ships = [];
 var stars = [];
 var timer = 0;
+var timer2 = 0;
+var a = 1;
 var indexship;
 var indexstar = 0;
 var wave;
+var readysetgo;
 var canvas;
 
 function setup() {
@@ -40,7 +43,7 @@ function draw() {
         }
         ships[i].display();
         ships[i].update();
-        if (ships[i].timer > 1400) {
+        if (ships[i].timer > 1500) {
             ships.splice(0, 10);
             ships[i].timer = 0;
         }
@@ -64,4 +67,34 @@ function draw() {
     
     wave.display();
     wave.update();
+    
+    var r = 255;
+    var g = 145;
+    var b = 0;
+    timer2 += a;
+    
+    
+    if (timer2 > 100 && timer2 < 150) {
+        textSize(100);
+        stroke(0);
+        strokeWeight(5);
+        fill(0, 255, 0);
+        text("GO", width/2 - 95, height/2 + 10);
+    }
+    
+    if (timer2 > 50 && timer2 < 100) {
+        textSize(100);
+        stroke(0);
+        strokeWeight(5);
+        fill(255, 255, 0);
+        text("SET", width/2 - 115, height/2 + 10);
+    }
+    
+    if (timer2 > 0 && timer2 < 50) {
+        textSize(100);
+        stroke(0);
+        strokeWeight(5);
+        fill(255, 145, 0);
+        text("READY", width/2 - 190, height/2 + 10);
+    }
 }
