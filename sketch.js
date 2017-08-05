@@ -18,7 +18,7 @@ function setup() {
     for (var i = 0; i < 10; i++) {
         stars[i] = new Star();
     }
-    for (var i = 0; i < 200; i++) {
+    for (var i = 0; i < 250; i++) {
         zvezde[i] = new Zvezde();
     }
     wave = new Wave();
