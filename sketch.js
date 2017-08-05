@@ -1,21 +1,25 @@
 var ships = [];
 var stars = [];
+var zvezde = [];
 var timer = 0;
 var timer2 = 0;
 var a = 1;
 var indexship;
-var indexstar = 0;
+var indexstar = 9;
 var wave;
 var readysetgo;
 var canvas;
 
 function setup() {
     canvas = createCanvas(window.innerWidth, window.innerHeight - 3.501);
-    for (i = 0; i < 10; i++) {
+    for (var i = 0; i < 7; i++) {
         ships[i] = new Ship();
     }
-    for (i = 0; i < 10; i++) {
+    for (var i = 0; i < 10; i++) {
         stars[i] = new Star();
+    }
+    for (var i = 0; i < 100; i++) {
+        zvezde[i] = new Zvezde();
     }
     wave = new Wave();
 }
@@ -27,34 +31,40 @@ window.onresize = function() {
     height = h;
 }
 function draw() {
-    background(0);
-    if (indexstar => 10) {
-        indexstar = 0;
+    background(35);
+    for (var i = 0; i < zvezde.length; i++) {
+        zvezde[i].display();
+    }
+    if (indexstar <= 0) {
+        indexstar = 9;
     } else {
-        indexstar += 1;
+        indexstar -= 1;
     }
     timer += 1;
     for (var i = 0; i < ships.length; i++) {
         if (timer > 100) {
             timer = 0;
-            for (var knez = 0; knez < 10; knez++) {
+            for (var knez = 0; knez < 7; knez++) {
                 ships.push(new Ship());
             }
         }
         ships[i].display();
-        ships[i].update();
-        if (ships[i].timer > 1500) {
-            ships.splice(0, 10);
+        ships[i].update();    
+        if (ships[i].timer > 1400) {
+            ships.splice(0, 7);
             ships[i].timer = 0;
         }
         if (ships[i].intersects(stars[indexstar])) {
             textSize(100);
             fill(255, 0, 0);
+            strokeWeight(5);
             text("GAME OVER", width/2 - 325, height/2 + 10);
+            fill(255);
+            textSize(45);
+            text("SCORE: " + wave.number, width/2 - 125, height/2 + 75)
             ships[i].upd();
         }
     } 
-    
     
     
     stars.push(new Star(mouseX, mouseY))
