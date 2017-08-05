@@ -29,6 +29,6 @@ function Ship() {
     }
     this.update = function() {
         this.y += 1 + this.speed;
-        this.timer += this.a;
+        this.timer += this.a
     }
 }
