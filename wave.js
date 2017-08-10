@@ -15,7 +15,7 @@ function Wave() {
         this.timer += 1;
         if (this.timer == 100) {
             this.timer = 0;
-            this.number += 2;
+            this.number += floor(random(1, 5));
         }
     }
 }
