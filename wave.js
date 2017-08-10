@@ -9,13 +9,13 @@ function Wave() {
         strokeWeight(5);
         stroke(0);
         fill(255);
-        text("Score: " + this.number, this.x, this.y)
+        text("Timer: " + this.number, this.x, this.y)
     }
     this.update = function() {
         this.timer += 1;
-        if (this.timer == 100) {
+        if (this.timer == 60) {
             this.timer = 0;
-            this.number += floor(random(1, 5));
+            this.number += 1;
         }
     }
 }
