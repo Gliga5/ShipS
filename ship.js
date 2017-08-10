@@ -1,7 +1,7 @@
 function Ship() {
     this.x = random(0, width);
     this.y = -500;
-    this.r = 46;
+    this.r = 45;
     this.s = random(0, 15);
     this.speed = random(0, 3);
     this.timer = 0;
