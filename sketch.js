@@ -1,24 +1,25 @@
 var ships = [];
 var stars = [];
 var zvezde = [];
+var lasers = [];
 var timer = 0;
 var timer2 = 0;
 var a = 1;
-var indexship;
-var indexstar = 9;
 var wave;
+var lo = 0;
 var readysetgo;
 var canvas;
 
 function setup() {
     canvas = createCanvas(window.innerWidth, window.innerHeight - 3.501);
-    for (var i = 0; i < 7; i++) {
+    for (var i = 0; i < 5; i++) {
         ships[i] = new Ship();
+        lasers[i] = new Laser(ships[i].x, ships[i].y, ships[i].speed);
     }
     for (var i = 0; i < 10; i++) {
-        stars[i] = new Star();
+        stars[i] = new Star(mouseX, mouseY);
     }
-    for (var i = 0; i < 250; i++) {
+    for (var i = 0; i < 200; i++) {
         zvezde[i] = new Zvezde();
     }
     wave = new Wave();
@@ -35,37 +36,53 @@ function draw() {
     for (var i = 0; i < zvezde.length; i++) {
         zvezde[i].display();
     }
-    if (indexstar <= 0) {
-        indexstar = 9;
-    } else {
-        indexstar -= 1;
-    }
     timer += 1;
     for (var i = 0; i < ships.length; i++) {
         if (timer > 100) {
             timer = 0;
-            for (var knez = 0; knez < 7; knez++) {
+            lo += 5;
+            for (var knez = 0; knez < 5; knez++) {
                 ships.push(new Ship());
             }
+            for (var k = 0; k < 5; k++) {
+                lasers.push(new Laser(ships[lo + k].x, ships[lo + k].y, ships[lo + k].speed));
+            }
         }
+        lasers[i].display();
+        lasers[i].update();
         ships[i].display();
-        ships[i].update();    
+        ships[i].update();
         if (ships[i].timer > 1400) {
-            ships.splice(0, 7);
+            ships.splice(0, 5);
+            lasers.splice(0, 5);
+            lo -= 5;
             ships[i].timer = 0;
         }
-        if (ships[i].intersects(stars[indexstar])) {
-            textSize(100);
-            fill(255, 0, 0);
-            strokeWeight(5);
-            text("GAME OVER", width/2 - 325, height/2 + 10);
-            fill(255);
-            textSize(45);
-            text("SCORE: " + wave.number, width/2 - 125, height/2 + 75)
-            ships[i].upd();
+        for (var j = 0; j < 10; j++) {
+            if (ships[i].intersects(stars[j])) {
+                textSize(100);
+                fill(255, 0, 0);
+                strokeWeight(5);
+                text("GAME OVER", width/2 - 325, height/2 + 10);
+                fill(255);
+                textSize(45);
+                text("SCORE: " + wave.number, width/2 - 125, height/2 + 75)
+                ships[i].upd();
+            }
+        }
+        for (var km = 0; km < 10; km++) {
+            if (lasers[i].intersects(stars[km])) {
+                textSize(100);
+                fill(255, 0, 0);
+                strokeWeight(5);
+                text("GAME OVER", width/2 - 325, height/2 + 10);
+                fill(255);
+                textSize(45);
+                text("SCORE: " + wave.number, width/2 - 125, height/2 + 75)
+                lasers[i].upd();
+            }
         }
     } 
-    
     
     stars.push(new Star(mouseX, mouseY))
     for (var i = 0; i < stars.length; i++) {
