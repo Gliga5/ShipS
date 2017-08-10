@@ -2,6 +2,7 @@ function Star(x, y) {
     this.x = x;
     this.y = y;
     this.r = 25;
+    this.r2 = 15;
     this.timer = 0;
     
     this.display = function() {
