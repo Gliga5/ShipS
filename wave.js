@@ -9,7 +9,7 @@ function Wave() {
         strokeWeight(5);
         stroke(0);
         fill(255);
-        text("Timer: " + this.number, this.x, this.y)
+        text("Time: " + this.number, this.x, this.y)
     }
     this.update = function() {
         this.timer += 1;
