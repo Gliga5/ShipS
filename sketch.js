@@ -2,10 +2,11 @@ var ships = [];
 var stars = [];
 var zvezde = [];
 var lasers = [];
+var pogoni = [];
+var wave;
 var timer = 0;
 var timer2 = 0;
 var a = 1;
-var wave;
 var lo = 0;
 var readysetgo;
 var canvas;
@@ -14,7 +15,7 @@ function setup() {
     canvas = createCanvas(window.innerWidth, window.innerHeight - 3.501);
     for (var i = 0; i < 5; i++) {
         ships[i] = new Ship();
-        lasers[i] = new Laser(ships[i].x, ships[i].y, ships[i].speed);
+        lasers[i] = new Laser(ships[i]);
     }
     for (var i = 0; i < 10; i++) {
         stars[i] = new Star(mouseX, mouseY);
@@ -43,9 +44,7 @@ function draw() {
             lo += 5;
             for (var knez = 0; knez < 5; knez++) {
                 ships.push(new Ship());
-            }
-            for (var k = 0; k < 5; k++) {
-                lasers.push(new Laser(ships[lo + k].x, ships[lo + k].y, ships[lo + k].speed));
+                lasers.push(new Laser(ships[lo + knez]));
             }
         }
         lasers[i].display();
@@ -66,7 +65,7 @@ function draw() {
                 text("GAME OVER", width/2 - 325, height/2 + 10);
                 fill(255);
                 textSize(45);
-                text("SCORE: " + wave.number, width/2 - 125, height/2 + 75)
+                text("Time: " + wave.number, width/2 - 125, height/2 + 75)
                 ships[i].upd();
             }
         }
@@ -78,7 +77,7 @@ function draw() {
                 text("GAME OVER", width/2 - 325, height/2 + 10);
                 fill(255);
                 textSize(45);
-                text("SCORE: " + wave.number, width/2 - 125, height/2 + 75)
+                text("Time: " + wave.number, width/2 - 125, height/2 + 75)
                 lasers[i].upd();
             }
         }
@@ -99,7 +98,6 @@ function draw() {
     var g = 145;
     var b = 0;
     timer2 += a;
-    
     
     if (timer2 > 100 && timer2 < 150) {
         textSize(100);
