@@ -1,9 +1,9 @@
-function Laser(x, y, speed) {
-    this.x = x;
-    this.y = y + 40;
+function Laser(others) {
+    this.x = others.x;
+    this.y = others.y + 40;
     this.r = 5;
     this.a = 1;
-    this.speed = 1 + speed;
+    this.speed = 1 + others.speed;
     this.timer = 0;
     
     this.intersects = function(other) {
