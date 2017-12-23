@@ -10,9 +10,15 @@ var a = 1;
 var lo = 0;
 var readysetgo;
 var canvas;
+var sound;
+
+function preload() {
+    sound = loadSound('lobe.mp3');
+}
 
 function setup() {
     canvas = createCanvas(window.innerWidth, window.innerHeight - 3.501);
+    sound.play();
     for (var i = 0; i < 5; i++) {
         ships[i] = new Ship();
         lasers[i] = new Laser(ships[i]);
@@ -66,6 +72,7 @@ function draw() {
                 fill(255);
                 textSize(45);
                 text("Time: " + wave.number, width/2 - 125, height/2 + 75)
+                sound.stop();
                 ships[i].upd();
             }
         }
@@ -78,6 +85,7 @@ function draw() {
                 fill(255);
                 textSize(45);
                 text("Time: " + wave.number, width/2 - 125, height/2 + 75)
+                sound.stop();
                 lasers[i].upd();
             }
         }
